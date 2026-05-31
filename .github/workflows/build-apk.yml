@@ -1,0 +1,80 @@
+name: Compilar APK GB SMART
+
+on:
+  # Se activa al crear un tag tipo v1.0.0
+  push:
+    tags:
+      - 'v*'
+  # También se puede lanzar manualmente desde GitHub → Actions
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias del sistema
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y \
+            build-essential git \
+            libssl-dev libffi-dev zlib1g-dev \
+            libgdbm-dev libncurses5-dev libncursesw5-dev \
+            libbz2-dev libreadline-dev libsqlite3-dev \
+            wget curl llvm openjdk-17-jdk \
+            autoconf libtool pkg-config cmake \
+            libgstreamer1.0-dev gstreamer1.0-plugins-base \
+            libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
+            libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev \
+            unzip
+
+      - name: Instalar Buildozer y Cython
+        run: |
+          pip install --upgrade pip
+          pip install buildozer cython
+
+      - name: Cachear Buildozer (acelera builds futuros)
+        uses: actions/cache@v4
+        with:
+          path: ~/.buildozer
+          key: buildozer-${{ runner.os }}-${{ hashFiles('buildozer.spec') }}
+          restore-keys: |
+            buildozer-${{ runner.os }}-
+
+      - name: Compilar APK (modo debug)
+        run: buildozer android debug
+
+      - name: Subir APK como artefacto del workflow
+        uses: actions/upload-artifact@v4
+        with:
+          name: GB-SMART-APK
+          path: bin/*.apk
+          retention-days: 30
+
+      # ── Solo cuando se crea un tag (v1.0.0, v1.1.0, etc.) ──
+      - name: Crear Release en GitHub con el APK
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "GB SMART ${{ github.ref_name }}"
+          files: bin/*.apk
+          body: |
+            ## GB SMART ${{ github.ref_name }}
+
+            ### Instalación en Android
+            1. Descarga el archivo `gbsmart-${{ github.ref_name }}-debug.apk`
+            2. En tu Android: **Ajustes → Seguridad → Fuentes desconocidas** → activar
+            3. Abre el APK descargado e instala
+
+            > Requiere Android 8.0 (API 26) o superior · 80 MB de espacio libre
+
+            ---
+            Proyecto universitario ITTLA 2026 · Python / KivyMD

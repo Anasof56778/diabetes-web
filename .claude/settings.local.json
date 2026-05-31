@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Recurse \"c:\\\\Users\\\\oolap\\\\OneDrive\\\\Desktop\\\\diabetes-web\" | Where-Object { !$_.PSIsContainer } | Select-Object FullName, Length, LastWriteTime | Sort-Object FullName)",
+      "PowerShell(python --version)",
+      "PowerShell(pip show kivy kivymd 2>&1)",
+      "PowerShell(pip install kivy[base] 2>&1)",
+      "PowerShell(pip install kivymd 2>&1)",
+      "PowerShell(python -c \"from kivymd.app import MDApp; from kivy.lang import Builder; from kivy.properties import BooleanProperty, StringProperty, NumericProperty, ListProperty; from kivymd.uix.dialog import MDDialog; from kivymd.uix.button import MDFlatButton; from kivy.uix.screenmanager import Screen; from kivymd.uix.boxlayout import MDBoxLayout; from kivymd.uix.label import MDLabel; from kivymd.uix.selectioncontrol import MDCheckbox; print\\('Todos los imports OK'\\)\" 2>&1)",
+      "PowerShell(ollama list 2>$null)",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\oolap\\\\OneDrive\\\\Desktop\\\\diabetes-web\\\\netlify\\\\functions\\\\lib\")"
+    ]
+  }
+}

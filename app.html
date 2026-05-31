@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GB SMART — Descarga y Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── RESET & BASE ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --teal:   #4FC0C5;
+            --teal2:  #2CA8AD;
+            --dark:   #2B3D4F;
+            --blue:   #2751A3;
+            --gold:   #FFC30B;
+            --bg:     #EDF2F7;
+            --white:  #ffffff;
+            --gray:   #6b7280;
+            --light:  #f8fafc;
+            --radius: 16px;
+            --shadow: 0 8px 32px rgba(39,81,163,.13);
+        }
+        body { font-family: 'Roboto', sans-serif; background: var(--bg); color: var(--dark); }
+
+        /* ── NAVBAR (reutiliza estilos de style.css + ajuste de enlace activo) ── */
+        .nav-link.active-page { color: var(--blue); font-weight: 700; }
+
+        /* ── PAGE HERO ── */
+        .app-hero {
+            background: linear-gradient(135deg, var(--blue) 0%, #1a3580 100%);
+            padding: 120px 24px 80px;
+            text-align: center;
+            color: var(--white);
+        }
+        .app-hero .badge {
+            display: inline-block;
+            background: rgba(255,195,11,.18);
+            border: 1px solid rgba(255,195,11,.4);
+            color: var(--gold);
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 99px;
+            margin-bottom: 20px;
+        }
+        .app-hero h1 { font-size: clamp(2rem,5vw,3.2rem); font-weight: 900; line-height: 1.15; margin-bottom: 16px; }
+        .app-hero h1 span { color: var(--gold); }
+        .app-hero p  { font-size: 1.1rem; opacity: .85; max-width: 560px; margin: 0 auto 40px; }
+
+        /* ── DOWNLOAD CARDS ── */
+        .dl-section { background: var(--white); padding: 80px 24px; }
+        .dl-section .container { max-width: 1100px; margin: 0 auto; }
+        .sec-label { text-align: center; margin-bottom: 48px; }
+        .sec-label .tag {
+            display: inline-block; background: #e8effc; color: var(--blue);
+            font-size: .78rem; font-weight: 700; letter-spacing: .08em;
+            text-transform: uppercase; padding: 5px 16px; border-radius: 99px; margin-bottom: 12px;
+        }
+        .sec-label h2 { font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 900; color: var(--dark); }
+        .sec-label p  { color: var(--gray); font-size: 1rem; margin-top: 10px; max-width: 520px; margin-inline: auto; }
+
+        .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 24px; }
+        .dl-card {
+            border-radius: var(--radius); border: 2px solid #e5e7eb;
+            padding: 36px 28px; text-align: center;
+            transition: transform .25s, box-shadow .25s, border-color .25s;
+            background: var(--white); position: relative; overflow: hidden;
+        }
+        .dl-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--blue); }
+        .dl-card.featured { border-color: var(--blue); background: linear-gradient(145deg,#f0f4ff,#fff); }
+        .dl-card .dl-badge-top {
+            position: absolute; top: 14px; right: 14px;
+            background: var(--blue); color: #fff;
+            font-size: .68rem; font-weight: 700; padding: 3px 10px; border-radius: 99px;
+        }
+        .dl-icon-box {
+            width: 72px; height: 72px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2rem;
+        }
+        .dl-icon-box.android { background: #e6f9f0; color: #27ae60; }
+        .dl-icon-box.demo    { background: #e8effc; color: var(--blue); }
+        .dl-icon-box.ios     { background: #f0f0f5; color: #555; }
+        .dl-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
+        .dl-card p  { color: var(--gray); font-size: .9rem; line-height: 1.6; margin-bottom: 22px; }
+        .dl-card .version { font-size: .78rem; color: var(--gray); margin-bottom: 18px; }
+        .dl-card .version span { font-weight: 700; color: var(--dark); }
+
+        .btn-dl {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px; border-radius: 99px; font-size: .95rem;
+            font-weight: 700; cursor: pointer; border: none; text-decoration: none;
+            transition: opacity .2s, transform .15s;
+        }
+        .btn-dl:hover { opacity: .88; transform: scale(1.04); }
+        .btn-dl.primary  { background: var(--blue); color: #fff; }
+        .btn-dl.teal     { background: var(--teal); color: #fff; }
+        .btn-dl.outline  { background: transparent; color: var(--gray); border: 2px solid #d1d5db; }
+        .btn-dl.disabled { opacity: .45; cursor: not-allowed; pointer-events: none; }
+
+        .req-list { list-style: none; text-align: left; margin-top: 16px; }
+        .req-list li { font-size: .82rem; color: var(--gray); padding: 3px 0; }
+        .req-list li i { color: var(--teal); margin-right: 6px; }
+
+        /* ── DEMO SECTION ── */
+        .demo-section { background: var(--bg); padding: 80px 24px 100px; }
+        .demo-section .container { max-width: 1100px; margin: 0 auto; }
+        .demo-layout {
+            display: flex; gap: 56px; align-items: flex-start; flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Phone frame */
+        .phone-demo-wrap { flex: 0 0 300px; position: sticky; top: 90px; }
+        .phone-demo {
+            width: 300px; background: #111827;
+            border-radius: 44px; padding: 16px 14px;
+            box-shadow: 0 32px 64px rgba(0,0,0,.35), 0 0 0 1px #1f2937;
+            position: relative;
+        }
+        .phone-demo-notch {
+            width: 90px; height: 22px; background: #111827;
+            border-radius: 0 0 14px 14px; margin: 0 auto 8px;
+        }
+        .phone-demo-screen {
+            background: var(--bg); border-radius: 30px;
+            overflow: hidden; height: 580px; position: relative;
+        }
+
+        /* App screens */
+        .app-screen {
+            position: absolute; inset: 0; background: var(--bg);
+            display: flex; flex-direction: column;
+            transform: translateX(100%); transition: transform .4s cubic-bezier(.4,0,.2,1);
+            overflow-y: auto; overflow-x: hidden;
+        }
+        .app-screen.active   { transform: translateX(0); }
+        .app-screen.prev     { transform: translateX(-100%); }
+
+        /* App top bar */
+        .abar {
+            background: var(--teal); color: #fff; padding: 14px 16px;
+            font-size: .95rem; font-weight: 700; display: flex;
+            align-items: center; gap: 10px; flex-shrink: 0;
+        }
+        .abar .abar-back { cursor: pointer; font-size: 1.1rem; }
+        .abar .abar-menu { margin-left: auto; cursor: pointer; }
+
+        /* LOGIN SCREEN */
+        .login-wrap {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 20px 16px; flex: 1;
+        }
+        .login-card {
+            background: #fff; border-radius: 18px; padding: 24px 20px;
+            width: 100%; box-shadow: 0 4px 18px rgba(0,0,0,.08);
+        }
+        .login-title { font-size: 1.1rem; font-weight: 700; text-align: center; color: var(--dark); margin-bottom: 16px; }
+        .a-input {
+            width: 100%; background: var(--bg); border: none; border-radius: 10px;
+            padding: 11px 14px; font-size: .88rem; margin-bottom: 10px;
+            outline: none; color: var(--dark); transition: box-shadow .2s;
+        }
+        .a-input:focus { box-shadow: 0 0 0 2px var(--teal); }
+        .a-input.error { box-shadow: 0 0 0 2px #e74c3c; }
+        .a-btn {
+            width: 100%; background: var(--dark); color: #fff; border: none;
+            border-radius: 10px; padding: 12px; font-size: .9rem; font-weight: 700;
+            cursor: pointer; margin-top: 4px; transition: background .2s;
+        }
+        .a-btn:hover { background: #1a2940; }
+        .a-btn.teal  { background: var(--teal); }
+        .a-btn.teal:hover { background: var(--teal2); }
+        .a-link { font-size: .78rem; color: var(--teal); text-align: center; margin-top: 10px; cursor: pointer; }
+        .a-link:hover { text-decoration: underline; }
+        .a-error { font-size: .75rem; color: #e74c3c; margin-bottom: 6px; display: none; }
+        .a-error.show { display: block; }
+        .a-msg { font-size: .75rem; color: #27ae60; margin-bottom: 6px; display: none; }
+        .a-msg.show { display: block; }
+        .login-footer { text-align: center; color: var(--gray); font-size: .75rem; margin-top: 12px; }
+
+        /* MENU SCREEN */
+        .menu-scroll { padding: 14px; flex: 1; }
+        .menu-welcome {
+            background: #fff; border-radius: 14px; padding: 16px;
+            margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+        .menu-welcome h3 { font-size: .9rem; font-weight: 700; color: var(--dark); }
+        .menu-welcome p  { font-size: .78rem; color: var(--gray); line-height: 1.5; margin-top: 4px; }
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+        .menu-btn {
+            background: var(--teal); color: #fff; border-radius: 12px;
+            padding: 16px 10px; text-align: center; cursor: pointer;
+            transition: transform .15s, background .2s;
+        }
+        .menu-btn:nth-child(2) { background: var(--dark); }
+        .menu-btn:hover { transform: scale(1.04); }
+        .menu-btn i { font-size: 1.4rem; display: block; margin-bottom: 6px; }
+        .menu-btn span { font-size: .75rem; font-weight: 700; }
+        .menu-summary {
+            background: #fff; border-radius: 14px; padding: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+        .menu-summary h4 { font-size: .85rem; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+        .sum-row { display: flex; justify-content: space-between; font-size: .78rem; margin-bottom: 6px; }
+        .sum-row .lbl { color: var(--gray); }
+        .sum-row .val { font-weight: 700; color: var(--teal); }
+
+        /* CUESTIONARIO SCREEN */
+        .quiz-scroll { padding: 14px; flex: 1; }
+        .quiz-intro {
+            background: #fff; border-radius: 14px; padding: 14px;
+            margin-bottom: 12px; font-size: .78rem; color: var(--gray);
+            box-shadow: 0 2px 10px rgba(0,0,0,.06); line-height: 1.5;
+        }
+        .quiz-intro strong { color: var(--dark); }
+        .quiz-item {
+            background: #fff; border-radius: 12px; padding: 12px 14px;
+            margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.05); cursor: pointer;
+            transition: border-color .15s; border: 2px solid transparent;
+        }
+        .quiz-item.checked { border-color: var(--teal); background: #f0fcfc; }
+        .quiz-item label { font-size: .78rem; color: var(--dark); flex: 1; cursor: pointer; line-height: 1.4; }
+        .quiz-check {
+            width: 20px; height: 20px; border-radius: 5px; border: 2px solid #d1d5db;
+            flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+            transition: background .15s, border-color .15s;
+        }
+        .quiz-item.checked .quiz-check { background: var(--teal); border-color: var(--teal); color: #fff; font-size: .7rem; }
+        .quiz-eval-btn {
+            display: block; width: 100%; background: var(--teal); color: #fff;
+            border: none; border-radius: 10px; padding: 13px; font-size: .9rem;
+            font-weight: 700; cursor: pointer; margin-top: 12px; transition: background .2s;
+        }
+        .quiz-eval-btn:hover { background: var(--teal2); }
+        .quiz-result {
+            display: none; border-radius: 12px; padding: 16px; margin-top: 12px;
+            font-size: .82rem; line-height: 1.6; font-weight: 700; text-align: center;
+        }
+        .quiz-result.low    { background: #d4edda; color: #1a6e32; }
+        .quiz-result.mid    { background: #fff3cd; color: #856404; }
+        .quiz-result.high   { background: #f8d7da; color: #721c24; }
+        .quiz-result.show   { display: block; }
+
+        /* MÉTRICAS SCREEN */
+        .met-scroll { padding: 14px; flex: 1; }
+        .met-title { font-size: .85rem; font-weight: 700; color: var(--dark); margin-bottom: 12px; }
+        .met-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+        .met-card {
+            border-radius: 12px; padding: 14px 10px; text-align: center; color: #fff;
+        }
+        .met-card.c1 { background: var(--teal); }
+        .met-card.c2 { background: var(--dark); }
+        .met-card.c3 { background: #cc7e40; }
+        .met-card.c4 { background: #7ab040; }
+        .met-card i  { font-size: 1.3rem; margin-bottom: 6px; display: block; }
+        .met-card .met-lbl { font-size: .68rem; opacity: .85; margin-bottom: 4px; }
+        .met-card .met-val { font-size: 1rem; font-weight: 900; }
+        .met-card .met-state { font-size: .65rem; opacity: .9; margin-top: 2px; }
+        .reco-card {
+            background: #fff; border-radius: 12px; padding: 14px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+        .reco-card h4 { font-size: .82rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .reco-card p  { font-size: .73rem; color: var(--gray); line-height: 1.6; }
+
+        /* ── DEMO CONTROLS ── */
+        .demo-controls {
+            flex: 1; min-width: 280px; max-width: 500px;
+            display: flex; flex-direction: column; gap: 16px;
+        }
+        .demo-controls h2 { font-size: 1.6rem; font-weight: 900; color: var(--dark); }
+        .demo-controls > p { color: var(--gray); font-size: .95rem; line-height: 1.6; }
+
+        .screen-nav { display: flex; flex-direction: column; gap: 10px; }
+        .snav-btn {
+            display: flex; align-items: center; gap: 14px;
+            background: #fff; border-radius: var(--radius); padding: 14px 18px;
+            border: 2px solid #e5e7eb; cursor: pointer;
+            transition: border-color .2s, box-shadow .2s, transform .15s;
+        }
+        .snav-btn:hover   { border-color: var(--teal); transform: translateX(4px); }
+        .snav-btn.current { border-color: var(--blue); box-shadow: 0 4px 18px rgba(39,81,163,.15); }
+        .snav-icon {
+            width: 44px; height: 44px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+        }
+        .snav-icon.ic1 { background: #e8effc; color: var(--blue); }
+        .snav-icon.ic2 { background: #e0f8f8; color: var(--teal2); }
+        .snav-icon.ic3 { background: #fff3cd; color: #856404; }
+        .snav-icon.ic4 { background: #e6f4d7; color: #4a7c1e; }
+        .snav-text h4  { font-size: .9rem; font-weight: 700; color: var(--dark); }
+        .snav-text p   { font-size: .78rem; color: var(--gray); }
+        .snav-arrow    { margin-left: auto; color: var(--gray); font-size: .8rem; }
+
+        .demo-note {
+            background: #fff; border-radius: var(--radius); padding: 18px;
+            border-left: 4px solid var(--teal); font-size: .85rem; color: var(--gray); line-height: 1.6;
+        }
+        .demo-note strong { color: var(--dark); }
+
+        /* ── FOOTER (mini) ── */
+        .app-footer {
+            background: var(--dark); color: rgba(255,255,255,.65);
+            text-align: center; padding: 30px 24px; font-size: .85rem;
+        }
+        .app-footer a { color: var(--gold); text-decoration: none; }
+        .app-footer a:hover { text-decoration: underline; }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width: 700px) {
+            .demo-layout { flex-direction: column; align-items: center; }
+            .phone-demo-wrap { position: static; }
+            .dl-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img src="img/Logo.png" alt="GB SMART" style="height:42px; width:auto;">
+        </a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html#inicio"       class="nav-link">Inicio</a></li>
+            <li><a href="index.html#problematica" class="nav-link">Problemática</a></li>
+            <li><a href="index.html#funciones"    class="nav-link">Funciones</a></li>
+            <li><a href="index.html#recetas"      class="nav-link">Recetas</a></li>
+            <li><a href="index.html#nosotros"     class="nav-link">Nosotros</a></li>
+            <li><a href="index.html#chat"         class="nav-link">Chat IA</a></li>
+            <li><a href="app.html"                class="nav-cta-btn active-page">Ver App</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="app-hero">
+    <div class="badge"><i class="fas fa-mobile-alt"></i>&nbsp; Glucosa del Bienestar · v1.0</div>
+    <h1>Descarga o <span>prueba la demo</span><br>de GB SMART</h1>
+    <p>Instala la aplicación en tu Android o explora todas las pantallas directamente desde tu navegador.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="#descarga" class="btn-dl primary"><i class="fas fa-download"></i> Ver opciones de descarga</a>
+        <a href="#demo"     class="btn-dl" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.35);">
+            <i class="fas fa-play-circle"></i> Probar demo ahora
+        </a>
+    </div>
+</section>
+
+<!-- ── DESCARGA ── -->
+<section class="dl-section" id="descarga">
+    <div class="container">
+        <div class="sec-label">
+            <div class="tag">Descarga</div>
+            <h2>Elige cómo usar GB SMART</h2>
+            <p>Disponible para Android. La versión iOS está en desarrollo.</p>
+        </div>
+
+        <div class="dl-grid">
+
+            <!-- Android -->
+            <div class="dl-card featured">
+                <span class="dl-badge-top">Recomendado</span>
+                <div class="dl-icon-box android"><i class="fab fa-android"></i></div>
+                <h3>Android APK</h3>
+                <p>Instala la aplicación completa en tu dispositivo Android. Requiere habilitar "Fuentes desconocidas" en ajustes.</p>
+                <div class="version">Versión <span>1.0.0</span> · Python / KivyMD</div>
+                <a href="https://github.com/Anasof56778/diabetes-web/releases/latest"
+                   class="btn-dl primary" target="_blank" rel="noopener"
+                   id="apkDownloadBtn">
+                    <i class="fas fa-download"></i> Descargar APK
+                </a>
+                <ul class="req-list">
+                    <li><i class="fas fa-check"></i> Android 8.0 o superior</li>
+                    <li><i class="fas fa-check"></i> 80 MB de espacio libre</li>
+                    <li><i class="fas fa-check"></i> Sin cuenta requerida para probar</li>
+                </ul>
+            </div>
+
+            <!-- Demo Web -->
+            <div class="dl-card">
+                <div class="dl-icon-box demo"><i class="fas fa-laptop-code"></i></div>
+                <h3>Demo Interactiva</h3>
+                <p>Prueba todas las pantallas de la app directamente en tu navegador, sin instalar nada. Perfecta para presentaciones.</p>
+                <div class="version">Simulador <span>Web</span> · Funciona en cualquier dispositivo</div>
+                <a href="#demo" class="btn-dl teal">
+                    <i class="fas fa-play-circle"></i> Probar ahora
+                </a>
+                <ul class="req-list">
+                    <li><i class="fas fa-check"></i> Sin instalación</li>
+                    <li><i class="fas fa-check"></i> Login, Menú, Cuestionario, Métricas</li>
+                    <li><i class="fas fa-check"></i> Funciona en móvil y escritorio</li>
+                </ul>
+            </div>
+
+            <!-- iOS -->
+            <div class="dl-card">
+                <div class="dl-icon-box ios"><i class="fab fa-apple"></i></div>
+                <h3>iOS (Próximamente)</h3>
+                <p>La versión para iPhone y iPad está en desarrollo. Regístrate para ser notificado cuando esté disponible.</p>
+                <div class="version">Estado: <span>En desarrollo</span></div>
+                <a href="#" class="btn-dl outline disabled">
+                    <i class="fas fa-clock"></i> Próximamente
+                </a>
+                <ul class="req-list">
+                    <li><i class="fas fa-check"></i> iOS 15 o superior</li>
+                    <li><i class="fas fa-check"></i> iPhone y iPad compatibles</li>
+                    <li><i class="fas fa-check"></i> Disponible en App Store</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Aviso APK -->
+        <!-- Mantenemos el nodo para compatibilidad, ahora vacío -->
+        <div id="apkNote" style="display:none;"></div>
+    </div>
+</section>
+
+<!-- ── DEMO INTERACTIVA ── -->
+<section class="demo-section" id="demo">
+    <div class="container">
+        <div class="sec-label">
+            <div class="tag">Demo en vivo</div>
+            <h2>Explora GB SMART desde aquí</h2>
+            <p>Navega entre todas las pantallas de la aplicación. Los datos son de ejemplo.</p>
+        </div>
+
+        <div class="demo-layout">
+
+            <!-- Phone -->
+            <div class="phone-demo-wrap">
+                <div class="phone-demo">
+                    <div class="phone-demo-notch"></div>
+                    <div class="phone-demo-screen">
+
+                        <!-- ── PANTALLA: LOGIN ── -->
+                        <div class="app-screen active" id="screen-login">
+                            <div class="abar" style="justify-content:center;">
+                                <span>Glucosa del Bienestar</span>
+                            </div>
+                            <div class="login-wrap">
+                                <div class="login-card">
+                                    <div class="login-title" id="loginTitle">Iniciar Sesión</div>
+
+                                    <div id="nameField" style="display:none;">
+                                        <input class="a-input" id="demoName" placeholder="Nombre completo" type="text">
+                                    </div>
+
+                                    <input class="a-input" id="demoEmail" placeholder="Correo electrónico" type="email">
+                                    <input class="a-input" id="demoPass"  placeholder="Contraseña" type="password">
+
+                                    <div id="confirmField" style="display:none;">
+                                        <input class="a-input" id="demoConfirm" placeholder="Confirmar contraseña" type="password">
+                                    </div>
+
+                                    <div class="a-error" id="loginError"></div>
+                                    <div class="a-msg"   id="loginMsg"></div>
+
+                                    <button class="a-btn" id="loginBtn" onclick="demoLogin()">Iniciar Sesión</button>
+
+                                    <div class="a-link" id="toggleLink" onclick="toggleRegister()">¿No tienes cuenta? <u>Regístrate</u></div>
+                                </div>
+                                <div class="login-footer">Tu salud es nuestra prioridad 💚</div>
+                            </div>
+                        </div>
+
+                        <!-- ── PANTALLA: VERIFICACIÓN 2 PASOS ── -->
+                        <div class="app-screen" id="screen-2fa">
+                            <div class="abar" style="justify-content:center;">
+                                <span>Verificación en 2 pasos</span>
+                            </div>
+                            <div class="login-wrap">
+                                <div class="login-card">
+                                    <div class="twofa-shield">🔐</div>
+                                    <div class="login-title" style="font-size:.95rem;">Verificación en 2 pasos</div>
+                                    <p class="twofa-desc">Enviamos un código de 6 dígitos a<br><strong id="twofaEmailHint"></strong></p>
+
+                                    <input class="a-input twofa-input" id="twofaCode"
+                                           placeholder="Código de 6 dígitos"
+                                           type="number" maxlength="6"
+                                           oninput="if(this.value.length>6)this.value=this.value.slice(0,6)"
+                                           onkeydown="if(event.key==='Enter')verify2FA()">
+
+                                    <div class="a-error" id="twofaError"></div>
+                                    <div class="a-msg"   id="twofaMsg"></div>
+
+                                    <button class="a-btn" id="twofaBtn" onclick="verify2FA()">Verificar Código</button>
+
+                                    <div class="twofa-resend">
+                                        <span id="twofaTimer">Reenviar en <b id="twofaCountdown">60</b>s</span>
+                                        <span id="twofaResendLink" style="display:none;"
+                                              class="a-link" onclick="resend2FA()">Reenviar código</span>
+                                    </div>
+
+                                    <div class="a-link" style="margin-top:6px;" onclick="goTo('login')">← Volver al inicio</div>
+
+                                    <div class="demo-code-hint">
+                                        <i class="fas fa-flask"></i> Demo: ingresa <strong>123456</strong>
+                                    </div>
+                                </div>
+                                <div class="login-footer">Tu salud es nuestra prioridad 💚</div>
+                            </div>
+                        </div>
+
+                        <!-- ── PANTALLA: MENÚ ── -->
+                        <div class="app-screen" id="screen-menu">
+                            <div class="abar">
+                                <i class="fas fa-bars abar-menu" onclick="goTo('login')"></i>
+                                <span style="flex:1;text-align:center;">Glucosa del Bienestar</span>
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="menu-scroll">
+                                <div class="menu-welcome">
+                                    <h3>¡Bienvenido/a! 👋</h3>
+                                    <p>Una empresa 100% responsable al cuidado y manejo de tu salud. Aquí podrás registrar tu glucosa y mejorar tu calidad de vida.</p>
+                                </div>
+                                <div class="menu-grid">
+                                    <div class="menu-btn" onclick="goTo('quiz')">
+                                        <i class="fas fa-clipboard-list"></i>
+                                        <span>Cuestionario<br>Diario</span>
+                                    </div>
+                                    <div class="menu-btn" onclick="goTo('metricas')">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>Mis<br>Métricas</span>
+                                    </div>
+                                </div>
+                                <div class="menu-summary">
+                                    <h4>Resumen de Hoy</h4>
+                                    <div class="sum-row"><span class="lbl">Última medición:</span><span class="val">No registrada</span></div>
+                                    <div class="sum-row"><span class="lbl">Estado general:</span><span class="val" style="color:#e74c3c;">Sin datos</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ── PANTALLA: CUESTIONARIO ── -->
+                        <div class="app-screen" id="screen-quiz">
+                            <div class="abar">
+                                <i class="fas fa-arrow-left abar-back" onclick="goTo('menu')"></i>
+                                <span>Cuestionario de Salud</span>
+                            </div>
+                            <div class="quiz-scroll">
+                                <div class="quiz-intro">
+                                    <strong>Evaluación de Riesgo de Diabetes</strong><br>
+                                    Marca las opciones que apliquen para calcular tu nivel de riesgo.
+                                </div>
+                                <div id="quizItems"></div>
+                                <button class="quiz-eval-btn" onclick="evaluarQuiz()">
+                                    <i class="fas fa-check-circle"></i> Evaluar Respuestas
+                                </button>
+                                <div class="quiz-result" id="quizResult"></div>
+                            </div>
+                        </div>
+
+                        <!-- ── PANTALLA: MÉTRICAS ── -->
+                        <div class="app-screen" id="screen-metricas">
+                            <div class="abar">
+                                <i class="fas fa-arrow-left abar-back" onclick="goTo('menu')"></i>
+                                <span>Mis Métricas de Salud</span>
+                            </div>
+                            <div class="met-scroll">
+                                <div class="met-title">Panel de Métricas de Salud</div>
+                                <div class="met-grid">
+                                    <div class="met-card c1">
+                                        <i class="fas fa-tint"></i>
+                                        <div class="met-lbl">Nivel de Glucosa</div>
+                                        <div class="met-val" id="mGlucosa">— mg/dL</div>
+                                        <div class="met-state" id="mGlucosaEst">—</div>
+                                    </div>
+                                    <div class="met-card c2">
+                                        <i class="fas fa-bed"></i>
+                                        <div class="met-lbl">Calidad de Sueño</div>
+                                        <div class="met-val" id="mSueno">—/10</div>
+                                        <div class="met-state" id="mSuenoEst">—</div>
+                                    </div>
+                                    <div class="met-card c3">
+                                        <i class="fas fa-heartbeat"></i>
+                                        <div class="met-lbl">Frecuencia Cardíaca</div>
+                                        <div class="met-val" id="mCardiaca">— lpm</div>
+                                        <div class="met-state" id="mCardiacaEst">—</div>
+                                    </div>
+                                    <div class="met-card c4">
+                                        <i class="fas fa-chart-bell-curve"></i>
+                                        <div class="met-lbl">Estabilidad General</div>
+                                        <div class="met-val" id="mEstab">—%</div>
+                                        <div class="met-state" id="mEstabEst">—</div>
+                                    </div>
+                                </div>
+                                <div class="reco-card">
+                                    <h4>Recomendaciones</h4>
+                                    <p id="mReco">Cargando recomendaciones...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /phone-screen -->
+                </div><!-- /phone-demo -->
+            </div><!-- /phone-demo-wrap -->
+
+            <!-- Controls -->
+            <div class="demo-controls">
+                <h2>Navega las pantallas</h2>
+                <p>Haz clic en cualquier pantalla o interactúa directamente en el teléfono de la izquierda.</p>
+
+                <div class="screen-nav">
+                    <div class="snav-btn current" id="nav-login" onclick="goTo('login')">
+                        <div class="snav-icon ic1"><i class="fas fa-sign-in-alt"></i></div>
+                        <div class="snav-text">
+                            <h4>Inicio de Sesión</h4>
+                            <p>Login / Registro / Recuperar contraseña</p>
+                        </div>
+                        <i class="fas fa-chevron-right snav-arrow"></i>
+                    </div>
+                    <div class="snav-btn" id="nav-menu" onclick="goTo('menu')">
+                        <div class="snav-icon ic2"><i class="fas fa-home"></i></div>
+                        <div class="snav-text">
+                            <h4>Menú Principal</h4>
+                            <p>Dashboard y accesos rápidos</p>
+                        </div>
+                        <i class="fas fa-chevron-right snav-arrow"></i>
+                    </div>
+                    <div class="snav-btn" id="nav-quiz" onclick="goTo('quiz')">
+                        <div class="snav-icon ic3"><i class="fas fa-clipboard-list"></i></div>
+                        <div class="snav-text">
+                            <h4>Cuestionario Diario</h4>
+                            <p>10 preguntas de riesgo · resultado inmediato</p>
+                        </div>
+                        <i class="fas fa-chevron-right snav-arrow"></i>
+                    </div>
+                    <div class="snav-btn" id="nav-metricas" onclick="goTo('metricas')">
+                        <div class="snav-icon ic4"><i class="fas fa-chart-line"></i></div>
+                        <div class="snav-text">
+                            <h4>Mis Métricas</h4>
+                            <p>Glucosa, sueño, cardíaca, estabilidad</p>
+                        </div>
+                        <i class="fas fa-chevron-right snav-arrow"></i>
+                    </div>
+                </div>
+
+                <div class="demo-note">
+                    <strong>Credenciales de demo:</strong><br>
+                    Email: <code>usuario1@gmail.com</code><br>
+                    Contraseña: <code>Demo2026!</code><br><br>
+                    Después del login se activa la <strong>verificación en 2 pasos</strong>.<br>
+                    Código 2FA demo: <code>123456</code>
+                </div>
+            </div>
+
+        </div><!-- /demo-layout -->
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="app-footer">
+    <p>&copy; 2026 GB SMART · Proyecto Universitario ITTLA ·
+       <a href="index.html">Volver al sitio principal</a></p>
+</footer>
+
+<script>
+/* ── NAVBAR hamburger ── */
+(function(){
+    const hb = document.getElementById('hamburger');
+    const nm = document.getElementById('navMenu');
+    if(hb) hb.addEventListener('click',()=>{
+        const o = nm.classList.toggle('open');
+        hb.classList.toggle('open',o);
+        hb.setAttribute('aria-expanded',o);
+    });
+})();
+
+/* ── DEMO: estado ── */
+const USERS = { 'usuario1@gmail.com':'Demo2026!', 'admin@glucosa.com':'Admin2026!' };
+let isRegister    = false;
+let currentScreen = 'login';
+let twofaCountdownInterval = null;
+
+/* ── NAVEGACIÓN ENTRE PANTALLAS ── */
+function goTo(name) {
+    const screens = document.querySelectorAll('.app-screen');
+    const navBtns  = document.querySelectorAll('.snav-btn');
+    screens.forEach(s => {
+        s.classList.remove('active','prev');
+        if(s.id !== 'screen-'+name) s.classList.add('prev');
+    });
+    const next = document.getElementById('screen-'+name);
+    if(next) { next.classList.remove('prev'); next.classList.add('active'); }
+
+    navBtns.forEach(b => b.classList.remove('current'));
+    const nb = document.getElementById('nav-'+name);
+    if(nb) nb.classList.add('current');
+
+    currentScreen = name;
+    if(name==='metricas') generarMetricas();
+    if(name==='quiz')     buildQuiz();
+}
+
+/* ── LOGIN / REGISTRO ── */
+function toggleRegister() {
+    isRegister = !isRegister;
+    document.getElementById('loginTitle').textContent = isRegister ? 'Crear Cuenta' : 'Iniciar Sesión';
+    document.getElementById('loginBtn').textContent   = isRegister ? 'Registrarse'  : 'Iniciar Sesión';
+    document.getElementById('toggleLink').innerHTML   = isRegister
+        ? '¿Ya tienes cuenta? <u>Inicia sesión</u>'
+        : '¿No tienes cuenta? <u>Regístrate</u>';
+    document.getElementById('nameField').style.display    = isRegister ? 'block' : 'none';
+    document.getElementById('confirmField').style.display = isRegister ? 'block' : 'none';
+    clearMessages();
+}
+
+function maskEmail(email) {
+    const [user, domain] = email.split('@');
+    return user.substring(0, 2) + '****@' + domain;
+}
+
+function show2FA(email) {
+    document.getElementById('twofaEmailHint').textContent = maskEmail(email);
+    document.getElementById('twofaCode').value = '';
+    document.getElementById('twofaError').textContent = '';
+    document.getElementById('twofaError').classList.remove('show');
+    document.getElementById('twofaMsg').textContent   = '';
+    document.getElementById('twofaMsg').classList.remove('show');
+    goTo('2fa');
+    startCountdown();
+}
+
+function startCountdown() {
+    clearInterval(twofaCountdownInterval);
+    let secs = 60;
+    document.getElementById('twofaCountdown').textContent = secs;
+    document.getElementById('twofaTimer').style.display      = 'inline';
+    document.getElementById('twofaResendLink').style.display = 'none';
+    twofaCountdownInterval = setInterval(() => {
+        secs--;
+        document.getElementById('twofaCountdown').textContent = secs;
+        if (secs <= 0) {
+            clearInterval(twofaCountdownInterval);
+            document.getElementById('twofaTimer').style.display      = 'none';
+            document.getElementById('twofaResendLink').style.display = 'inline';
+        }
+    }, 1000);
+}
+
+function resend2FA() {
+    document.getElementById('twofaMsg').textContent = 'Código reenviado (demo: usa 123456).';
+    document.getElementById('twofaMsg').classList.add('show');
+    startCountdown();
+}
+
+function verify2FA() {
+    const code  = document.getElementById('twofaCode').value.trim();
+    const errEl = document.getElementById('twofaError');
+    const msgEl = document.getElementById('twofaMsg');
+    errEl.textContent = ''; errEl.classList.remove('show');
+    msgEl.textContent = ''; msgEl.classList.remove('show');
+
+    if (!code || code.length !== 6) {
+        errEl.textContent = 'Ingresa el código de 6 dígitos.';
+        errEl.classList.add('show');
+        return;
+    }
+    if (code === '123456') {
+        clearInterval(twofaCountdownInterval);
+        msgEl.textContent = '¡Verificación exitosa!';
+        msgEl.classList.add('show');
+        document.getElementById('twofaBtn').disabled = true;
+        setTimeout(() => {
+            document.getElementById('twofaBtn').disabled = false;
+            goTo('menu');
+        }, 900);
+    } else {
+        errEl.textContent = 'Código incorrecto. Intenta de nuevo.';
+        errEl.classList.add('show');
+        document.getElementById('twofaCode').value = '';
+        document.getElementById('twofaCode').focus();
+    }
+}
+
+function demoLogin() {
+    clearMessages();
+    const email = document.getElementById('demoEmail').value.trim();
+    const pass  = document.getElementById('demoPass').value.trim();
+
+    if (!email || !pass) return showError('Completa todos los campos.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError('Correo electrónico no válido.');
+
+    if (isRegister) {
+        const name    = document.getElementById('demoName').value.trim();
+        const confirm = document.getElementById('demoConfirm').value.trim();
+        if (!name)            return showError('Ingresa tu nombre completo.');
+        if (pass.length < 8)  return showError('La contraseña debe tener al menos 8 caracteres.');
+        if (pass !== confirm) return showError('Las contraseñas no coinciden.');
+        USERS[email] = pass;
+        showMsg('¡Registro exitoso! Verifica tu correo con el código enviado.');
+        setTimeout(() => { isRegister = false; toggleRegister(); show2FA(email); }, 1200);
+    } else {
+        if (USERS[email] && USERS[email] === pass) {
+            show2FA(email);
+        } else {
+            showError('Correo o contraseña incorrectos.');
+        }
+    }
+}
+
+function showError(msg) {
+    const el = document.getElementById('loginError');
+    el.textContent = msg; el.classList.add('show');
+}
+function showMsg(msg) {
+    const el = document.getElementById('loginMsg');
+    el.textContent = msg; el.classList.add('show');
+}
+function clearMessages() {
+    ['loginError','loginMsg'].forEach(id => {
+        const el = document.getElementById(id);
+        el.textContent = ''; el.classList.remove('show');
+    });
+}
+
+/* ── CUESTIONARIO ── */
+const PREGUNTAS = [
+    '¿Tiene sed excesiva con frecuencia?',
+    '¿Orina con más frecuencia de lo normal?',
+    '¿Ha experimentado pérdida de peso inexplicable?',
+    '¿Se siente más cansado de lo habitual?',
+    '¿Tiene visión borrosa?',
+    '¿Sus heridas tardan más en sanar?',
+    '¿Experimenta hormigueo en manos o pies?',
+    '¿Tiene antecedentes familiares de diabetes?',
+    '¿Tiene sobrepeso u obesidad?',
+    '¿Su presión arterial es alta?'
+];
+
+function buildQuiz() {
+    const c = document.getElementById('quizItems');
+    if(c.children.length) return;
+    PREGUNTAS.forEach((q,i)=>{
+        const div = document.createElement('div');
+        div.className = 'quiz-item';
+        div.dataset.idx = i;
+        div.innerHTML = `
+            <div class="quiz-check" id="chk-${i}"></div>
+            <label>${q}</label>`;
+        div.onclick = ()=>toggleQuizItem(div,i);
+        c.appendChild(div);
+    });
+    document.getElementById('quizResult').className='quiz-result';
+}
+
+function toggleQuizItem(el, i) {
+    el.classList.toggle('checked');
+    const chk = document.getElementById('chk-'+i);
+    chk.innerHTML = el.classList.contains('checked') ? '<i class="fas fa-check"></i>' : '';
+}
+
+function evaluarQuiz() {
+    const items = document.querySelectorAll('.quiz-item');
+    const total = [...items].filter(i=>i.classList.contains('checked')).length;
+    const res   = document.getElementById('quizResult');
+
+    if(total <= 2) {
+        res.className = 'quiz-result low show';
+        res.innerHTML = `✅ BAJO RIESGO<br><small style="font-weight:400">Respuestas positivas: ${total}/10<br>Continúa con hábitos saludables.</small>`;
+    } else if(total <= 5) {
+        res.className = 'quiz-result mid show';
+        res.innerHTML = `⚠️ RIESGO MODERADO<br><small style="font-weight:400">Respuestas positivas: ${total}/10<br>Te recomendamos consultar a tu médico.</small>`;
+    } else {
+        res.className = 'quiz-result high show';
+        res.innerHTML = `🚨 ALTO RIESGO<br><small style="font-weight:400">Respuestas positivas: ${total}/10<br>Consulta a un médico lo antes posible.</small>`;
+    }
+    res.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+/* ── MÉTRICAS ── */
+function rand(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function randF(min,max,dec){ return parseFloat((Math.random()*(max-min)+min).toFixed(dec)); }
+
+function generarMetricas() {
+    const g = rand(80,180);
+    const s = randF(6,9.5,1);
+    const c = rand(60,100);
+    const e = rand(70,95);
+
+    document.getElementById('mGlucosa').textContent    = g+' mg/dL';
+    document.getElementById('mSueno').textContent      = s+'/10';
+    document.getElementById('mCardiaca').textContent   = c+' lpm';
+    document.getElementById('mEstab').textContent      = e+'%';
+
+    document.getElementById('mGlucosaEst').textContent = g < 140 ? 'Normal' : 'Elevado';
+    document.getElementById('mSuenoEst').textContent   = s > 8 ? 'Excelente' : s > 6 ? 'Buena' : 'Regular';
+    document.getElementById('mCardiacaEst').textContent = (c>=60&&c<=100) ? 'Normal' : 'Irregular';
+    document.getElementById('mEstabEst').textContent   = e > 85 ? 'Muy Estable' : 'Estable';
+
+    const recos = [];
+    if(g > 140) recos.push('• Reduce el consumo de azúcares y carbohidratos simples.');
+    else        recos.push('• Tus niveles de glucosa están en rango normal. ¡Sigue así!');
+    if(s < 7)   recos.push('• Intenta dormir al menos 7–8 horas por noche.');
+    else        recos.push('• Tu calidad de sueño es adecuada.');
+    if(c > 90)  recos.push('• Practica técnicas de relajación.');
+    else        recos.push('• Tu frecuencia cardíaca está en rango normal.');
+    recos.push(e < 80 ? '• Mantén una rutina constante de alimentación y ejercicio.' : '• Tu estabilidad general es muy buena.');
+
+    document.getElementById('mReco').textContent = recos.join('\n');
+}
+
+/* ── APK MODAL ── */
+function openApkModal(e) {
+    e.preventDefault();
+    document.getElementById('apkModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeApkModal() {
+    document.getElementById('apkModal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+async function submitApkNotify(e) {
+    e.preventDefault();
+    const email  = document.getElementById('apkEmail').value.trim();
+    const nombre = document.getElementById('apkNombre').value.trim();
+    const btn    = document.getElementById('apkNotifyBtn');
+    const msg    = document.getElementById('apkNotifyMsg');
+    const err    = document.getElementById('apkNotifyErr');
+
+    err.textContent = ''; msg.textContent = '';
+
+    if (!email) { err.textContent = 'Ingresa tu correo electrónico.'; return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    try {
+        const res  = await fetch('/.netlify/functions/notify-apk', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({ email, nombre })
+        });
+        const data = await res.json();
+        if (res.ok) {
+            msg.textContent = data.message || '¡Listo! Te avisaremos cuando el APK esté disponible.';
+            document.getElementById('apkEmail').value  = '';
+            document.getElementById('apkNombre').value = '';
+            btn.textContent = '✓ Registrado';
+        } else {
+            err.textContent = data.error || 'Ocurrió un error. Intenta de nuevo.';
+            btn.disabled = false; btn.textContent = 'Notificarme';
+        }
+    } catch {
+        err.textContent = 'Sin conexión. Intenta más tarde.';
+        btn.disabled = false; btn.textContent = 'Notificarme';
+    }
+}
+
+/* ── ENTER en login ── */
+document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && currentScreen === 'login') demoLogin();
+    if (e.key === 'Escape') closeApkModal();
+});
+</script>
+
+<!-- ── MODAL APK ── -->
+<div id="apkModal" class="apk-modal-overlay" onclick="if(event.target===this)closeApkModal()">
+    <div class="apk-modal">
+        <button class="apk-modal-close" onclick="closeApkModal()" aria-label="Cerrar">&times;</button>
+        <div class="apk-modal-icon"><i class="fab fa-android"></i></div>
+        <h3>APK en preparación</h3>
+        <p>El APK se generará al compilar la app con <strong>Buildozer</strong>.<br>
+           Déjanos tu correo y te avisamos en cuanto esté listo.</p>
+
+        <form onsubmit="submitApkNotify(event)" class="apk-modal-form">
+            <input id="apkNombre" type="text"  placeholder="Tu nombre (opcional)">
+            <input id="apkEmail"  type="email" placeholder="tu@correo.com" required>
+            <div id="apkNotifyErr" class="apk-modal-err"></div>
+            <div id="apkNotifyMsg" class="apk-modal-ok"></div>
+            <button type="submit" id="apkNotifyBtn">Notificarme</button>
+        </form>
+
+        <div class="apk-modal-alt">
+            <p>Mientras tanto, prueba la <a href="#demo" onclick="closeApkModal()">Demo Interactiva</a></p>
+        </div>
+    </div>
+</div>
+
+<style>
+/* ── 2FA screen styles ── */
+.twofa-shield    { font-size:2.4rem; text-align:center; margin-bottom:6px; }
+.twofa-desc      { font-size:.78rem; color:#555; text-align:center; margin-bottom:14px; line-height:1.5; }
+.twofa-input     { text-align:center; font-size:1.3rem; letter-spacing:6px; font-weight:700; }
+.twofa-resend    { text-align:center; font-size:.75rem; color:#888; margin-top:8px; }
+.demo-code-hint  { background:#f0f4ff; border-radius:8px; padding:8px 10px;
+                   font-size:.74rem; color:#2751A3; text-align:center; margin-top:10px; }
+
+/* ── APK Modal ── */
+.apk-modal-overlay {
+    display:none; position:fixed; inset:0;
+    background:rgba(0,0,0,.55); z-index:9999;
+    align-items:center; justify-content:center;
+}
+.apk-modal-overlay.open { display:flex; }
+.apk-modal {
+    background:#fff; border-radius:18px; padding:36px 32px;
+    max-width:440px; width:90%; position:relative; text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,.22);
+    animation: modalIn .25s ease;
+}
+@keyframes modalIn { from{transform:scale(.9);opacity:0} to{transform:scale(1);opacity:1} }
+.apk-modal-close {
+    position:absolute; top:14px; right:18px; background:none;
+    border:none; font-size:1.5rem; color:#999; cursor:pointer; line-height:1;
+}
+.apk-modal-close:hover { color:#333; }
+.apk-modal-icon { font-size:3rem; color:#3ddc84; margin-bottom:10px; }
+.apk-modal h3   { margin:0 0 10px; font-size:1.2rem; color:#1a1a2e; }
+.apk-modal p    { font-size:.88rem; color:#555; margin-bottom:20px; line-height:1.6; }
+.apk-modal-form { display:flex; flex-direction:column; gap:10px; }
+.apk-modal-form input {
+    border:1.5px solid #dde3f0; border-radius:10px;
+    padding:10px 14px; font-size:.9rem; outline:none;
+    transition:border-color .2s;
+}
+.apk-modal-form input:focus { border-color:#2751A3; }
+.apk-modal-form button {
+    background:linear-gradient(135deg,#2751A3,#4FC0C5);
+    color:#fff; border:none; border-radius:10px;
+    padding:12px; font-size:.95rem; font-weight:700;
+    cursor:pointer; transition:opacity .2s;
+}
+.apk-modal-form button:disabled { opacity:.6; cursor:default; }
+.apk-modal-err  { color:#e74c3c; font-size:.8rem; min-height:16px; }
+.apk-modal-ok   { color:#27ae60; font-size:.8rem; min-height:16px; }
+.apk-modal-alt  { margin-top:16px; font-size:.82rem; color:#888; }
+.apk-modal-alt a { color:#2751A3; font-weight:600; text-decoration:none; }
+</style>
+</body>
+</html>

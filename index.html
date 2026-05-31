@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GB SMART - Plataforma universitaria de prevención y monitoreo de Diabetes Tipo 2 en adultos del Estado de México.">
+    <title>GB SMART — Prevención y Monitoreo de Diabetes Tipo 2</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="#inicio" class="nav-logo">
+            <img src="img/Logo.png" alt="GB SMART" style="height:42px; width:auto;">
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#inicio"       class="nav-link">Inicio</a></li>
+            <li><a href="#problematica" class="nav-link">Problemática</a></li>
+            <li><a href="#funciones"    class="nav-link">Funciones</a></li>
+            <li><a href="#recetas"      class="nav-link">Recetas</a></li>
+            <li><a href="#nosotros"     class="nav-link">Nosotros</a></li>
+            <li><a href="#chat"         class="nav-link">Chat IA</a></li>
+            <li><a href="#tecnologias"  class="nav-link">Tecnologías</a></li>
+            <li><a href="app.html"      class="nav-cta-btn">Ver App</a></li>
+        </ul>
+
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero" id="inicio">
+    <div class="hero-bg">
+        <div class="hbg-circle c1"></div>
+        <div class="hbg-circle c2"></div>
+        <div class="hbg-circle c3"></div>
+        <div class="hbg-grid"></div>
+    </div>
+
+    <div class="hero-inner container">
+
+        <!-- Texto -->
+        <div class="hero-text" data-aos="fade-right">
+            <span class="hero-badge">
+                <i class="fas fa-graduation-cap"></i>&nbsp;
+                Proyecto Universitario · ITTLA · 2026
+            </span>
+
+            <h1 class="hero-title">
+                Bienestar en tiempo real
+                <span class="hero-hl">para la prevención de Diabetes</span> Tipo 2
+            </h1>
+
+            <p class="hero-sub">
+                Monitoreo personalizado, recomendaciones con IA y
+                acompañamiento continuo para adultos de
+                <strong>30 a 59 años</strong> del Estado de México.
+            </p>
+
+            <div class="hero-btns">
+                <a href="#problematica" class="btn btn-primary">
+                    <i class="fas fa-arrow-down"></i> Conocer más
+                </a>
+                <a href="app.html" class="btn btn-outline">
+                    <i class="fas fa-mobile-alt"></i> Ver aplicación
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="hstat">
+                    <span class="hstat-num">13M+</span>
+                    <span class="hstat-lbl">mexicanos con diabetes</span>
+                </div>
+                <div class="hstat-sep"></div>
+                <div class="hstat">
+                    <span class="hstat-num" data-no-counter>30–59 años</span>
+                    <span class="hstat-lbl">mayor riesgo</span>
+                </div>
+                <div class="hstat-sep"></div>
+                <div class="hstat">
+                    <span class="hstat-num">#1</span>
+                    <span class="hstat-lbl">causa de muerte en MX</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mockup del teléfono -->
+        <div class="hero-visual" data-aos="fade-left">
+            <div class="phone-wrap">
+                <!-- Reemplazar el contenido interno con screenshots reales de la app -->
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <!-- 📸 REEMPLAZAR: screenshot de la pantalla principal de la app -->
+                        <div class="app-mock">
+                            <div class="amock-header">
+                                <span class="amock-name">GB SMART MX</span>
+                                <i class="fas fa-bell amock-bell"></i>
+                            </div>
+                            <div class="amock-greet">¡Buenos días, Carlos! 👋</div>
+                            <div class="amock-glucose-card">
+                                <span class="agc-label">Glucosa actual</span>
+                                <div class="agc-value">95 <small>mg/dL</small></div>
+                                <span class="agc-badge normal">✓ Normal</span>
+                            </div>
+                            <div class="amock-actions">
+                                <div class="amock-act"><i class="fas fa-plus-circle"></i><span>Registrar</span></div>
+                                <div class="amock-act"><i class="fas fa-chart-line"></i><span>Historial</span></div>
+                                <div class="amock-act"><i class="fas fa-utensils"></i><span>Dieta</span></div>
+                            </div>
+                            <div class="amock-chart">
+                                <div class="amock-chart-title">Últimos 7 días</div>
+                                <div class="amock-bars">
+                                    <div class="amock-bar" style="--h:62%"></div>
+                                    <div class="amock-bar" style="--h:75%"></div>
+                                    <div class="amock-bar" style="--h:50%"></div>
+                                    <div class="amock-bar" style="--h:88%"></div>
+                                    <div class="amock-bar" style="--h:65%"></div>
+                                    <div class="amock-bar" style="--h:72%"></div>
+                                    <div class="amock-bar active" style="--h:55%"></div>
+                                </div>
+                            </div>
+                            <div class="amock-reminder">
+                                <i class="fas fa-clock"></i>
+                                <span>Medicamento — 14:00 hrs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="phone-glow"></div>
+
+                <!-- Tarjetas flotantes -->
+                <div class="float-card fc1" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Monitoreo en tiempo real</span>
+                </div>
+                <div class="float-card fc2" data-aos="zoom-in" data-aos-delay="600">
+                    <i class="fas fa-robot"></i>
+                    <span>IA personalizada</span>
+                </div>
+                <div class="float-card fc3" data-aos="zoom-in" data-aos-delay="800">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Datos seguros</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#problematica" class="scroll-hint" aria-label="Siguiente sección">
+        <span class="scroll-hint-dot"></span>
+    </a>
+</section>
+
+<!-- ============================================================
+     PROBLEMÁTICA
+============================================================ -->
+<section class="section section-white" id="problematica">
+    <div class="container">
+        <div class="sec-header" data-aos="fade-up">
+            <span class="sec-tag">El problema</span>
+            <h2 class="sec-title">La Diabetes Tipo 2: una crisis silenciosa en México</h2>
+            <p class="sec-desc">
+                El Estado de México concentra una de las tasas más altas de diabetes del país.
+                La prevención temprana, apoyada por tecnología accesible, puede cambiar el rumbo de esta epidemia.
+            </p>
+        </div>
+
+        <div class="prob-grid" data-aos="fade-up" data-aos-delay="100">
+            <div class="prob-card">
+                <div class="prob-icon-box" style="background:#FFE0D2;">
+                    <i class="fas fa-users" style="color:#2751A3;"></i>
+                </div>
+                <h3>13.7 Millones</h3>
+                <p>de mexicanos viven con diabetes. México ocupa el <strong>6.° lugar mundial</strong> en prevalencia según la FID.</p>
+            </div>
+            <div class="prob-card">
+                <div class="prob-icon-box" style="background:#e8effc;">
+                    <i class="fas fa-eye-slash" style="color:#FFC30B;"></i>
+                </div>
+                <h3>50% sin diagnóstico</h3>
+                <p>La mitad de los pacientes <strong>no sabe que tiene diabetes</strong> hasta etapas avanzadas con complicaciones graves.</p>
+            </div>
+            <div class="prob-card">
+                <div class="prob-icon-box" style="background:#fff8e1;">
+                    <i class="fas fa-user-clock" style="color:#2751A3;"></i>
+                </div>
+                <h3>Adultos 30–59 años</h3>
+                <p>El grupo de mayor riesgo. La vida laboral activa y los <strong>hábitos sedentarios</strong> incrementan la vulnerabilidad.</p>
+            </div>
+            <div class="prob-card">
+                <div class="prob-icon-box" style="background:#e8effc;">
+                    <i class="fas fa-map-marker-alt" style="color:#2751A3;"></i>
+                </div>
+                <h3>Estado de México</h3>
+                <p>Con más de 16 millones de habitantes, reporta alta incidencia de <strong>diabetes, obesidad e hipertensión</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Gráfica simulada con Chart.js -->
+        <div class="chart-wrap" data-aos="fade-up" data-aos-delay="150">
+            <div class="chart-text">
+                <h3>Crecimiento de la Diabetes Tipo 2 en México (2015–2025)</h3>
+                <p>
+                    La tendencia muestra un incremento sostenido. Sin intervención temprana y herramientas de monitoreo
+                    accesibles, los números seguirán escalando.
+                    <strong>GB SMART</strong> busca revertir esta tendencia mediante tecnología preventiva y
+                    educación en salud digital.
+                </p>
+                <ul class="chart-legend">
+                    <li><span class="cleg-dot cleg-blue"></span> Casos diagnosticados (millones)</li>
+                    <li><span class="cleg-dot cleg-gold"></span> Estimado no diagnosticado (millones)</li>
+                </ul>
+            </div>
+            <div class="chart-canvas-box">
+                <canvas id="diabetesChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Banner de prevención -->
+        <div class="prev-banner" data-aos="fade-up" data-aos-delay="200">
+            <div class="prev-banner-text">
+                <h3>La prevención puede reducir hasta un <span class="gold-text">58%</span> el riesgo</h3>
+                <p>Con cambios en el estilo de vida, monitoreo constante y acceso a información oportuna, es posible prevenir o retrasar significativamente la aparición de Diabetes Tipo 2.</p>
+            </div>
+            <a href="#funciones" class="btn btn-primary btn-icon-right">
+                Ver cómo ayuda GB SMART <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FUNCIONES DE LA APP
+============================================================ -->
+<section class="section section-cream" id="funciones">
+    <div class="container">
+        <div class="sec-header" data-aos="fade-up">
+            <span class="sec-tag">La solución</span>
+            <h2 class="sec-title">Funcionalidades diseñadas para tu bienestar</h2>
+            <p class="sec-desc">
+                Una aplicación móvil intuitiva y poderosa que acompaña al usuario en cada etapa
+                de su salud metabólica, con tecnología de punta al alcance de tu mano.
+            </p>
+        </div>
+
+        <!-- Feature 1 -->
+        <div class="feat-row" data-aos="fade-up">
+            <div class="feat-phone-wrap">
+                <!-- 📸 REEMPLAZAR: screenshot de la pantalla de registro de glucosa -->
+                <div class="feat-screen fs-blue">
+                    <div class="fscr-header"><i class="fas fa-tint"></i> Registro de Glucosa</div>
+                    <div class="fscr-body">
+                        <div class="fscr-input"><label>Nivel (mg/dL)</label><div class="fscr-field">95</div></div>
+                        <div class="fscr-input"><label>Hora de medición</label><div class="fscr-field">08:30 AM</div></div>
+                        <div class="fscr-input"><label>Estado</label><div class="fscr-field fscr-ok">Normal ✓</div></div>
+                        <div class="fscr-btn">Guardar registro</div>
+                    </div>
+                </div>
+            </div>
+            <div class="feat-info">
+                <div class="feat-icon-box"><i class="fas fa-tint"></i></div>
+                <h3>Registro de Glucosa</h3>
+                <p>Registra tus niveles de glucosa de forma sencilla y rápida. La app analiza tus datos y genera alertas cuando detecta valores fuera del rango recomendado.</p>
+                <ul class="feat-checklist">
+                    <li><i class="fas fa-check-circle"></i> Entrada rápida de valores</li>
+                    <li><i class="fas fa-check-circle"></i> Clasificación automática (normal · prediabetes · alerta)</li>
+                    <li><i class="fas fa-check-circle"></i> Notificaciones inteligentes al médico</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feat-row feat-row-rev" data-aos="fade-up">
+            <div class="feat-info">
+                <div class="feat-icon-box"><i class="fas fa-chart-line"></i></div>
+                <h3>Monitoreo Continuo</h3>
+                <p>Visualiza la evolución de tu salud con gráficas interactivas. Identifica patrones y tendencias para tomar decisiones informadas junto a tu equipo médico.</p>
+                <ul class="feat-checklist">
+                    <li><i class="fas fa-check-circle"></i> Gráficas interactivas por período</li>
+                    <li><i class="fas fa-check-circle"></i> Análisis de tendencias y patrones</li>
+                    <li><i class="fas fa-check-circle"></i> Reportes semanales automáticos en PDF</li>
+                </ul>
+            </div>
+            <div class="feat-phone-wrap">
+                <!-- 📸 REEMPLAZAR: screenshot de la pantalla de monitoreo/gráficas -->
+                <div class="feat-screen fs-gold">
+                    <div class="fscr-header"><i class="fas fa-chart-line"></i> Monitoreo</div>
+                    <div class="fscr-body">
+                        <div class="donut-sim">
+                            <div class="donut-circle">
+                                <span class="donut-pct">78%</span>
+                                <span class="donut-sub">Control</span>
+                            </div>
+                        </div>
+                        <div class="mst-row">
+                            <div class="mst-item"><span class="mst-val">95</span><span class="mst-lbl">Promedio</span></div>
+                            <div class="mst-item"><span class="mst-val">12</span><span class="mst-lbl">Registros</span></div>
+                            <div class="mst-item"><span class="mst-val" style="color:#27ae60;">✓</span><span class="mst-lbl">Estado</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feat-row" data-aos="fade-up">
+            <div class="feat-phone-wrap">
+                <!-- 📸 REEMPLAZAR: screenshot de la pantalla de recordatorios -->
+                <div class="feat-screen fs-blue">
+                    <div class="fscr-header"><i class="fas fa-bell"></i> Recordatorios</div>
+                    <div class="fscr-body">
+                        <div class="rem-row rem-on">
+                            <i class="fas fa-pills rem-icon"></i>
+                            <div class="rem-txt"><b>Metformina</b><small>08:00 AM · Diario</small></div>
+                            <div class="tog tog-on"></div>
+                        </div>
+                        <div class="rem-row rem-on">
+                            <i class="fas fa-tint rem-icon"></i>
+                            <div class="rem-txt"><b>Medir glucosa</b><small>07:00 AM · Diario</small></div>
+                            <div class="tog tog-on"></div>
+                        </div>
+                        <div class="rem-row">
+                            <i class="fas fa-running rem-icon"></i>
+                            <div class="rem-txt"><b>Ejercicio</b><small>06:00 PM · Lun–Vie</small></div>
+                            <div class="tog tog-off"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feat-info">
+                <div class="feat-icon-box"><i class="fas fa-bell"></i></div>
+                <h3>Recordatorios Inteligentes</h3>
+                <p>Nunca olvides una medición, medicamento o sesión de ejercicio. Configura recordatorios personalizados que se adaptan perfectamente a tu rutina diaria.</p>
+                <ul class="feat-checklist">
+                    <li><i class="fas fa-check-circle"></i> Notificaciones personalizadas</li>
+                    <li><i class="fas fa-check-circle"></i> Recordatorios de medicamentos por nombre y dosis</li>
+                    <li><i class="fas fa-check-circle"></i> Alertas de actividad física y dieta</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feat-row feat-row-rev" data-aos="fade-up">
+            <div class="feat-info">
+                <div class="feat-icon-box"><i class="fas fa-robot"></i></div>
+                <h3>Recomendaciones con IA</h3>
+                <p>Nuestra inteligencia artificial analiza tu historial y genera recomendaciones personalizadas de nutrición, ejercicio y hábitos saludables basadas en evidencia clínica actualizada.</p>
+                <ul class="feat-checklist">
+                    <li><i class="fas fa-check-circle"></i> Sugerencias adaptadas a tu perfil</li>
+                    <li><i class="fas fa-check-circle"></i> Planes nutricionales adaptativos</li>
+                    <li><i class="fas fa-check-circle"></i> Guías de actividad física graduales</li>
+                </ul>
+            </div>
+            <div class="feat-phone-wrap">
+                <!-- 📸 REEMPLAZAR: screenshot de la pantalla de recomendaciones IA -->
+                <div class="feat-screen fs-gold">
+                    <div class="fscr-header"><i class="fas fa-robot"></i> Recomendaciones IA</div>
+                    <div class="fscr-body">
+                        <div class="reco-row"><span class="reco-emoji">🥗</span><div><b>Consume más fibra hoy</b><small>Basado en tu glucosa de ayer</small></div></div>
+                        <div class="reco-row"><span class="reco-emoji">🚶</span><div><b>30 min de caminata</b><small>Mejora sensibilidad a insulina</small></div></div>
+                        <div class="reco-row"><span class="reco-emoji">💧</span><div><b>Hidratación adecuada</b><small>2 litros de agua diarios</small></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fila de funciones adicionales -->
+        <div class="frow-grid" data-aos="fade-up">
+            <div class="frow-card">
+                <div class="frow-icon-box"><i class="fas fa-history"></i></div>
+                <h4>Historial Completo</h4>
+                <p>Todo tu historial de salud organizado por fechas y categorías para revisiones médicas.</p>
+            </div>
+            <div class="frow-card">
+                <div class="frow-icon-box"><i class="fas fa-chart-bar"></i></div>
+                <h4>Estadísticas Avanzadas</h4>
+                <p>Visualiza estadísticas detalladas sobre tu progreso y tendencias de salud a lo largo del tiempo.</p>
+            </div>
+            <div class="frow-card">
+                <div class="frow-icon-box"><i class="fas fa-lock"></i></div>
+                <h4>Privacidad Total</h4>
+                <p>Tus datos médicos están cifrados y protegidos con los más altos estándares de seguridad.</p>
+            </div>
+            <div class="frow-card">
+                <div class="frow-icon-box"><i class="fas fa-file-medical-alt"></i></div>
+                <h4>Reportes para Médico</h4>
+                <p>Genera reportes PDF detallados para compartir con tu médico de forma fácil y segura.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     RECETAS SALUDABLES
+============================================================ -->
+<section class="section section-white" id="recetas">
+    <div class="container">
+        <div class="sec-header" data-aos="fade-up">
+            <span class="sec-tag">Nutrición inteligente</span>
+            <h2 class="sec-title">Recetas saludables para el control de glucosa</h2>
+            <p class="sec-desc">
+                Alimentarse bien no tiene por qué ser aburrido. Descubre recetas deliciosas
+                diseñadas para mantener tus niveles de glucosa estables todo el día.
+            </p>
+        </div>
+
+        <div class="recetas-grid" data-aos="fade-up" data-aos-delay="100">
+
+            <!-- Receta 1 -->
+            <div class="rec-card">
+                <div class="rec-img-wrap">
+                    <!-- 📸 REEMPLAZAR: foto real de la receta (400×250 px) -->
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=250&fit=crop"
+                         alt="Ensalada mediterránea con quinoa" loading="lazy">
+                    <span class="rec-badge">Bajo índice glucémico</span>
+                </div>
+                <div class="rec-body">
+                    <div class="rec-meta">
+                        <span><i class="fas fa-clock"></i> 15 min</span>
+                        <span><i class="fas fa-fire-alt"></i> 280 kcal</span>
+                        <span><i class="fas fa-seedling"></i> Vegetariana</span>
+                    </div>
+                    <h3>Ensalada Mediterránea con Quinoa</h3>
+                    <p>Quinoa, espinacas, tomate cherry, pepino, aceite de oliva y limón. Rica en fibra y proteínas para un control glucémico óptimo.</p>
+                    <button class="btn-rec" onclick="openReceta('mediterranea')">
+                        <i class="fas fa-utensils"></i> Cómo hacerlo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Receta 2 -->
+            <div class="rec-card">
+                <div class="rec-img-wrap">
+                    <!-- 📸 REEMPLAZAR: foto real de la receta -->
+                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=250&fit=crop"
+                         alt="Avena con frutos rojos y chía" loading="lazy">
+                    <span class="rec-badge">Alto en fibra</span>
+                </div>
+                <div class="rec-body">
+                    <div class="rec-meta">
+                        <span><i class="fas fa-clock"></i> 10 min</span>
+                        <span><i class="fas fa-fire-alt"></i> 320 kcal</span>
+                        <span><i class="fas fa-leaf"></i> Sin gluten</span>
+                    </div>
+                    <h3>Avena con Frutos Rojos y Chía</h3>
+                    <p>Avena integral, arándanos, frambuesas, semillas de chía y canela. El desayuno ideal para empezar el día con energía estable.</p>
+                    <button class="btn-rec" onclick="openReceta('avena')">
+                        <i class="fas fa-utensils"></i> Cómo hacerlo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Receta 3 -->
+            <div class="rec-card">
+                <div class="rec-img-wrap">
+                    <!-- 📸 REEMPLAZAR: foto real de la receta -->
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=250&fit=crop"
+                         alt="Salmón al vapor con verduras" loading="lazy">
+                    <span class="rec-badge">Alto en Omega-3</span>
+                </div>
+                <div class="rec-body">
+                    <div class="rec-meta">
+                        <span><i class="fas fa-clock"></i> 25 min</span>
+                        <span><i class="fas fa-fire-alt"></i> 420 kcal</span>
+                        <span><i class="fas fa-fish"></i> Proteína</span>
+                    </div>
+                    <h3>Salmón al Vapor con Verduras</h3>
+                    <p>Salmón fresco, brócoli, zanahoria y espárragos al vapor con salsa de limón y hierbas. Antiinflamatorio y muy nutritivo.</p>
+                    <button class="btn-rec" onclick="openReceta('salmon')">
+                        <i class="fas fa-utensils"></i> Cómo hacerlo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Receta 4 -->
+            <div class="rec-card">
+                <div class="rec-img-wrap">
+                    <!-- 📸 REEMPLAZAR: foto real de la receta -->
+                    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400&h=250&fit=crop"
+                         alt="Wrap de pollo con aguacate" loading="lazy">
+                    <span class="rec-badge">Bajo en carbohidratos</span>
+                </div>
+                <div class="rec-body">
+                    <div class="rec-meta">
+                        <span><i class="fas fa-clock"></i> 20 min</span>
+                        <span><i class="fas fa-fire-alt"></i> 380 kcal</span>
+                        <span><i class="fas fa-drumstick-bite"></i> Proteína</span>
+                    </div>
+                    <h3>Wrap de Pollo con Aguacate</h3>
+                    <p>Pollo a la plancha, aguacate, lechuga, tomate y yogur griego en tortilla integral. Balanceado y perfecto para el almuerzo.</p>
+                    <button class="btn-rec" onclick="openReceta('wrap')">
+                        <i class="fas fa-utensils"></i> Cómo hacerlo
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     NOSOTROS
+============================================================ -->
+<section class="section section-blue-dark" id="nosotros">
+    <div class="container">
+        <div class="sec-header sec-header-light" data-aos="fade-up">
+            <span class="sec-tag sec-tag-gold">El equipo</span>
+            <h2 class="sec-title">Tecnología con propósito humano</h2>
+            <p class="sec-desc sec-desc-light">
+                Somos estudiantes de Ingeniería en Tecnología de la información y Comunicaciones comprometidos con mejorar la calidad
+                de vida de los adultos en el Estado de México mediante tecnología accesible y humana.
+            </p>
+        </div>
+
+        <div class="nos-row" data-aos="fade-up">
+            <div class="nos-text">
+                <h3>Nuestro proyecto</h3>
+                <p>
+                    <strong>GB SMART</strong> nació como respuesta a la creciente problemática de la diabetes tipo 2 en México.
+                    Combinamos desarrollo móvil, inteligencia artificial y principios de diseño centrado en el usuario para crear
+                    una herramienta que realmente marque la diferencia en la vida de las personas.
+                </p>
+                <p>
+                    Desarrollado como proyecto de Ingeniería de Software en el ITTLA, nuestro sistema fue construido con base
+                    en investigación real, entrevistas con usuarios y revisión de literatura médica especializada.
+                </p>
+                <div class="valores-wrap">
+                    <div class="valor-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Enfoque humanístico</span>
+                    </div>
+                    <div class="valor-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Innovación tecnológica</span>
+                    </div>
+                    <div class="valor-item">
+                        <i class="fas fa-universal-access"></i>
+                        <span>Accesibilidad</span>
+                    </div>
+                    <div class="valor-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Privacidad de datos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="nos-img-wrap">
+                <!-- 📸 REEMPLAZAR: foto del equipo de desarrollo -->
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=560&h=400&fit=crop"
+                     alt="Equipo de desarrollo GB SMART" loading="lazy">
+                <div class="nos-img-cap">
+                    <i class="fas fa-graduation-cap"></i>
+                    Equipo GB SMART · ITTLA 2026
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipo -->
+        <div class="team-section" data-aos="fade-up">
+            <h3 class="team-title">Equipo de Desarrollo</h3>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="img/Gabriel.jpeg"
+                             alt="Gabriel Hernández">
+                    </div>
+                    <h4>Gabriel Hernández</h4>
+                    <span class="team-role">Estudiante de ITICS · Desarrollo de Aplicación Móvil</span>
+                    <p>Encargado del desarrollo y estructura general de la aplicación móvil enfocada en el monitoreo y prevención de Diabetes Tipo 2.</p>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="img/maria.jpg.jpeg"
+                             alt="María Chávez">
+                    </div>
+                    <h4>María Chávez</h4>
+                    <span class="team-role">Diseño UX/UI · Figma</span>
+                    <p>Responsable del diseño visual de la interfaz, experiencia de usuario y prototipos enfocados en accesibilidad y facilidad de uso.</p>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="img/Sofia.jpeg"
+                             alt="Ana Nava">
+                    </div>
+                    <h4>Ana Nava</h4>
+                    <span class="team-role">Base de Datos y Backend</span>
+                    <p>Apoyo en la conexión de base de datos y organización de la información utilizada dentro del sistema web y móvil.</p>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <!-- 📸 REEMPLAZAR: foto real del integrante -->
+                    <div class="team-avatar">
+                        <img src="img/Marco.jpg"
+                             alt="Marco Juarez">
+                    </div>
+                    <h4>Marco Juarez</h4>
+                    <span class="team-role">Investigación y Análisis</span>
+                    <p>Encargado de la investigación sobre Diabetes Tipo 2, recopilación de información y análisis de datos para el contenido del proyecto.</p>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     CHAT IA SIMULADO
+============================================================ -->
+<section class="section section-chat" id="chat">
+    <div class="container">
+        <div class="sec-header" data-aos="fade-up">
+            <span class="sec-tag">Asistente virtual</span>
+            <h2 class="sec-title">DiabetBot — Tu asistente de salud con IA</h2>
+            <p class="sec-desc">
+                Pregunta a nuestro asistente inteligente sobre diabetes, hábitos saludables
+                y cómo aprovechar al máximo GB SMART. Disponible las 24 horas.
+            </p>
+        </div>
+
+        <div class="chat-layout" data-aos="fade-up" data-aos-delay="100">
+
+            <!-- Ventana de chat -->
+            <div class="chat-window">
+                <div class="chat-top-bar">
+                    <div class="ctb-avatar"><i class="fas fa-robot"></i></div>
+                    <div class="ctb-info">
+                        <strong>DiabetBot</strong>
+                        <span class="ctb-status"><span class="status-dot"></span> En línea</span>
+                    </div>
+                    <div class="ctb-dots"><i class="fas fa-ellipsis-v"></i></div>
+                </div>
+
+                <div class="chat-body" id="chatMessages">
+                    <div class="chat-date-pill">Hoy</div>
+
+                    <div class="cmsg cmsg-bot">
+                        <div class="cmsg-avatar"><i class="fas fa-robot"></i></div>
+                        <div class="cmsg-bubble">
+                            <p>¡Hola! Soy <strong>DiabetBot</strong>, tu asistente de salud con inteligencia artificial. 👋</p>
+                            <p>Puedo ayudarte con información sobre diabetes tipo 2, nutrición, ejercicio y el uso de GB SMART.</p>
+                            <p>¿Sobre qué tema te gustaría saber hoy?</p>
+                            <span class="cmsg-time">09:00 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="chat-quick-btns" id="quickReplies">
+                        <button class="cqb" onclick="sendQuickReply('¿Qué es la diabetes tipo 2?')">¿Qué es la diabetes tipo 2?</button>
+                        <button class="cqb" onclick="sendQuickReply('¿Cómo registro mi glucosa?')">¿Cómo registro mi glucosa?</button>
+                        <button class="cqb" onclick="sendQuickReply('¿Qué alimentos debo evitar?')">¿Qué alimentos debo evitar?</button>
+                        <button class="cqb" onclick="sendQuickReply('¿Cómo funciona la app?')">¿Cómo funciona la app?</button>
+                    </div>
+                </div>
+
+                <div class="chat-input-area">
+                    <input type="text"
+                           id="chatInput"
+                           class="chat-input"
+                           placeholder="Escribe tu pregunta aquí..."
+                           onkeypress="handleEnter(event)"
+                           autocomplete="off">
+                    <button class="chat-send-btn" onclick="sendMessage()" aria-label="Enviar">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sidebar informativo -->
+            <div class="chat-sidebar">
+                <h3>¿Qué puede hacer DiabetBot?</h3>
+                <div class="csb-list">
+                    <div class="csb-item">
+                        <i class="fas fa-question-circle"></i>
+                        <div>
+                            <h4>Responder dudas</h4>
+                            <p>Información confiable sobre diabetes, síntomas y prevención.</p>
+                        </div>
+                    </div>
+                    <div class="csb-item">
+                        <i class="fas fa-apple-alt"></i>
+                        <div>
+                            <h4>Guía nutricional</h4>
+                            <p>Recomendaciones de alimentos según tu perfil de salud.</p>
+                        </div>
+                    </div>
+                    <div class="csb-item">
+                        <i class="fas fa-dumbbell"></i>
+                        <div>
+                            <h4>Planes de ejercicio</h4>
+                            <p>Rutinas adaptadas para mejorar la sensibilidad a la insulina.</p>
+                        </div>
+                    </div>
+                    <div class="csb-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div>
+                            <h4>Uso de la app</h4>
+                            <p>Guía paso a paso para aprovechar al máximo GB SMART.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="csb-note">
+                    <i class="fas fa-info-circle"></i>
+                    <p><strong>Aviso médico:</strong> DiabetBot proporciona información educativa general. No reemplaza la consulta con un médico profesional.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     TECNOLOGÍAS
+============================================================ -->
+<section class="section section-cream" id="tecnologias">
+    <div class="container">
+        <div class="sec-header" data-aos="fade-up">
+            <span class="sec-tag">Stack tecnológico</span>
+            <h2 class="sec-title">Construido con tecnologías de vanguardia</h2>
+            <p class="sec-desc">
+                Utilizamos las mejores herramientas del ecosistema de desarrollo móvil y web
+                para garantizar rendimiento, escalabilidad y seguridad en cada módulo de GB SMART.
+            </p>
+        </div>
+
+        <div class="tech-grid" data-aos="fade-up" data-aos-delay="100">
+            <div class="tech-card">
+                <div class="tech-icon-box tech-html"><span>HTML5</span></div>
+                <h4>HTML5</h4>
+                <p>Estructura semántica y accesible para la plataforma web del proyecto educativo.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon-box tech-css"><span>CSS3</span></div>
+                <h4>CSS3</h4>
+                <p>Diseño responsive con animaciones fluidas y experiencia visual óptima en cualquier dispositivo.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon-box tech-js"><span>JS</span></div>
+                <h4>JavaScript</h4>
+                <p>Interactividad, lógica de negocio y funcionalidades dinámicas en el frontend del sitio.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon-box tech-firebase"><span>🔥</span></div>
+                <h4>Firebase</h4>
+                <p>Base de datos en tiempo real, autenticación segura y almacenamiento en la nube de Google.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon-box tech-android"><span>🤖</span></div>
+                <h4>Android Studio</h4>
+                <p>IDE oficial para el desarrollo de la aplicación móvil nativa para dispositivos Android.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon-box tech-figma"><span>◆</span></div>
+                <h4>Figma</h4>
+                <p>Prototipado interactivo, diseño UI/UX y sistema de diseño colaborativo del proyecto.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     MODAL RECETAS
+============================================================ -->
+<div class="modal-overlay" id="recetaModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+        <button class="modal-close-btn" onclick="closeModal()" aria-label="Cerrar receta">
+            <i class="fas fa-times"></i>
+        </button>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="img/Logo.png" alt="GB SMART" style="height:42px; width:auto; filter:brightness(0) invert(1);">
+                </div>
+                <p>Plataforma universitaria de prevención y monitoreo de Diabetes Tipo 2 para adultos de 30 a 59 años del Estado de México.</p>
+                <div class="footer-social">
+                    <a href="#" class="fsoc" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="fsoc" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="fsoc" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="fsoc" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="fsoc" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#problematica">Problemática</a></li>
+                    <li><a href="#funciones">Funciones</a></li>
+                    <li><a href="#recetas">Recetas</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#chat">Chat IA</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="#">Descargar App</a></li>
+                    <li><a href="#">Guía de Usuario</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Blog de Salud</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Términos de Uso</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-contact-col">
+                <h4>Contacto</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fas fa-university"></i> ITTLA · Ingeniería en Tecnologías de la Información</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Estado de México, México</li>
+                    <li><i class="fas fa-envelope"></i> gbsmart@ittla.edu.mx</li>
+                    <li><i class="fas fa-graduation-cap"></i> Ingeniería en Tecnologías de la Información y Comunicaciones 2026</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+            <p>&copy; 2026 GB SMART · Proyecto Universitario ITTLA · Todos los derechos reservados.</p>
+            <p>Desarrollado con <span class="heart">♥</span> para mejorar la salud de los mexicanos</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Botón volver arriba -->
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Volver al inicio">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

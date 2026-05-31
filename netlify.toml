@@ -1,0 +1,13 @@
+[build]
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler   = "esbuild"
+  included_files = ["netlify/functions/lib/**"]
+
+# Variables de entorno — configúralas en el panel de Netlify > Site Settings > Env vars:
+# DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME, DB_SSL
+# JWT_SECRET   (cadena aleatoria, mínimo 32 chars)
+# SMTP_USER    (tu Gmail para envío de códigos)
+# SMTP_PASS    (contraseña de aplicación de Google)
+# GROQ_API_KEY (clave para DiabetBot)
