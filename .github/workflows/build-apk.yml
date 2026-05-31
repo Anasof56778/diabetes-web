@@ -1,11 +1,9 @@
 name: Compilar APK GB SMART
 
 on:
-  # Se activa al crear un tag tipo v1.0.0
   push:
     tags:
       - 'v*'
-  # También se puede lanzar manualmente desde GitHub → Actions
   workflow_dispatch:
 
 jobs:
@@ -38,7 +36,35 @@ jobs:
       - name: Instalar Buildozer y Cython
         run: |
           pip install --upgrade pip
-          pip install buildozer cython
+          pip install buildozer==1.5.0 cython==3.0.0
+
+      - name: Preparar Android SDK (instalar sdkmanager en ruta correcta)
+        run: |
+          ANDROID_SDK=$HOME/.buildozer/android/platform/android-sdk
+          mkdir -p $ANDROID_SDK/cmdline-tools
+
+          # Descargar Android command-line tools
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdtools.zip
+          unzip -q cmdtools.zip -d $ANDROID_SDK/cmdline-tools
+          mv $ANDROID_SDK/cmdline-tools/cmdline-tools $ANDROID_SDK/cmdline-tools/latest
+          rm cmdtools.zip
+
+          SDKMANAGER=$ANDROID_SDK/cmdline-tools/latest/bin/sdkmanager
+
+          # Aceptar todas las licencias
+          yes | $SDKMANAGER --sdk_root=$ANDROID_SDK --licenses > /dev/null 2>&1 || true
+
+          # Instalar plataformas y build-tools necesarias
+          $SDKMANAGER --sdk_root=$ANDROID_SDK \
+            "platform-tools" \
+            "platforms;android-33" \
+            "build-tools;33.0.0"
+
+          # Crear enlace simbólico en ruta legacy que usa buildozer
+          mkdir -p $ANDROID_SDK/tools/bin
+          ln -sf $SDKMANAGER $ANDROID_SDK/tools/bin/sdkmanager
+
+          echo "ANDROID_HOME=$ANDROID_SDK" >> $GITHUB_ENV
 
       - name: Cachear Buildozer (acelera builds futuros)
         uses: actions/cache@v4
@@ -48,20 +74,8 @@ jobs:
           restore-keys: |
             buildozer-${{ runner.os }}-
 
-      - name: Aceptar licencias de Android SDK
-        run: |
-          mkdir -p ~/.buildozer/android/platform/android-sdk/licenses
-          printf "24333f8a63b6825ea9c5514f83c2829b004d1fee\n8933bad161af4178b1185d1a37fbf41ea5269c55\n" \
-            > ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-license
-          printf "84831b9409646a918e30573bab4c9c91346d8abd\n504667f4c0de7af1a06de9f4b1727b84351f2910\n" \
-            >> ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-license
-          printf "33b6a2b64607f11b759f320ef9dff4ae5c47d97a\n" \
-            > ~/.buildozer/android/platform/android-sdk/licenses/google-gdk-license
-          printf "d975f751698a77b662f1254ddbeed3901e976f5a\n" \
-            > ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-arm-eabi-v7a-license
-
       - name: Compilar APK (modo debug)
-        run: yes | buildozer android debug
+        run: buildozer android debug
 
       - name: Subir APK como artefacto del workflow
         uses: actions/upload-artifact@v4
@@ -70,7 +84,6 @@ jobs:
           path: bin/*.apk
           retention-days: 30
 
-      # ── Solo cuando se crea un tag (v1.0.0, v1.1.0, etc.) ──
       - name: Crear Release en GitHub con el APK
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
@@ -81,7 +94,7 @@ jobs:
             ## GB SMART ${{ github.ref_name }}
 
             ### Instalación en Android
-            1. Descarga el archivo `gbsmart-${{ github.ref_name }}-debug.apk`
+            1. Descarga el archivo `.apk`
             2. En tu Android: **Ajustes → Seguridad → Fuentes desconocidas** → activar
             3. Abre el APK descargado e instala
 
