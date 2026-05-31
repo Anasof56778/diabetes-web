@@ -48,8 +48,20 @@ jobs:
           restore-keys: |
             buildozer-${{ runner.os }}-
 
+      - name: Aceptar licencias de Android SDK
+        run: |
+          mkdir -p ~/.buildozer/android/platform/android-sdk/licenses
+          printf "24333f8a63b6825ea9c5514f83c2829b004d1fee\n8933bad161af4178b1185d1a37fbf41ea5269c55\n" \
+            > ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-license
+          printf "84831b9409646a918e30573bab4c9c91346d8abd\n504667f4c0de7af1a06de9f4b1727b84351f2910\n" \
+            >> ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-license
+          printf "33b6a2b64607f11b759f320ef9dff4ae5c47d97a\n" \
+            > ~/.buildozer/android/platform/android-sdk/licenses/google-gdk-license
+          printf "d975f751698a77b662f1254ddbeed3901e976f5a\n" \
+            > ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-arm-eabi-v7a-license
+
       - name: Compilar APK (modo debug)
-        run: buildozer android debug
+        run: yes | buildozer android debug
 
       - name: Subir APK como artefacto del workflow
         uses: actions/upload-artifact@v4
