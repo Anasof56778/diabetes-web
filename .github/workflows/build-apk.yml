@@ -16,27 +16,61 @@ jobs:
       - name: Descargar código
         uses: actions/checkout@v4
 
-      - name: Compilar APK (imagen Docker oficial de Kivy)
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
         run: |
-          docker run --rm \
-            -v ${{ github.workspace }}:/home/user/hostcwd \
-            kivy/buildozer:latest \
-            android debug 2>&1 | tee build.log
+          sudo apt-get update -qq
+          sudo apt-get install -y \
+            build-essential git zip unzip \
+            libssl-dev libffi-dev zlib1g-dev \
+            openjdk-17-jdk autoconf libtool cmake
+          sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+          echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
+          pip install buildozer==1.5.0 cython==3.0.0
+
+      - name: Pre-aceptar licencias Android SDK
+        run: |
+          SDK=$HOME/.buildozer/android/platform/android-sdk
+          mkdir -p $SDK/licenses
+          # Licencias necesarias para build-tools 33 y 37
+          printf "24333f8a63b6825ea9c5514f83c2829b004d1fee\n8933bad161af4178b1185d1a37fbf41ea5269c55\nd56f5187479451eabf01fb78af6dfcb131a6481e\n" > $SDK/licenses/android-sdk-license
+          printf "84831b9409646a918e30573bab4c9c91346d8abd\n504667f4c0de7af1a06de9f4b1727b84351f2910\n" > $SDK/licenses/android-sdk-preview-license
+          printf "33b6a2b64607f11b759f320ef9dff4ae5c47d97a\n" > $SDK/licenses/google-gdk-license
+          printf "d975f751698a77b662f1254ddbeed3901e976f5a\n" > $SDK/licenses/android-sdk-arm-eabi-v7a-license
+
+      - name: Cachear Buildozer
+        uses: actions/cache@v4
+        with:
+          path: ~/.buildozer
+          key: buildozer-${{ runner.os }}-${{ hashFiles('buildozer.spec') }}
+          restore-keys: buildozer-${{ runner.os }}-
+
+      - name: Compilar APK
+        env:
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+        run: |
+          yes | buildozer android debug 2>&1 | tee build.log
           BUILD_EXIT=${PIPESTATUS[0]}
           if [ $BUILD_EXIT -ne 0 ]; then
-            echo "====== ÚLTIMAS 100 LÍNEAS ======"
-            tail -100 build.log
+            echo "====== ÚLTIMAS 150 LÍNEAS ======"
+            grep -E "ERROR|error|Error|FAILED|Exception" build.log | tail -30
+            echo "--- FIN DEL LOG ---"
+            tail -80 build.log
             exit 1
           fi
 
-      - name: Subir APK como artefacto
+      - name: Subir APK
         uses: actions/upload-artifact@v4
         with:
           name: GB-SMART-APK
           path: bin/*.apk
           retention-days: 30
 
-      - name: Crear Release en GitHub con el APK
+      - name: Crear Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
