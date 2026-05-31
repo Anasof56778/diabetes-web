@@ -16,83 +16,20 @@ jobs:
       - name: Descargar código
         uses: actions/checkout@v4
 
-      - name: Configurar Python 3.11
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Instalar dependencias del sistema
+      - name: Compilar APK (imagen Docker oficial de Kivy)
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y \
-            build-essential git \
-            libssl-dev libffi-dev zlib1g-dev \
-            libgdbm-dev libncurses5-dev libncursesw5-dev \
-            libbz2-dev libreadline-dev libsqlite3-dev \
-            wget curl llvm openjdk-17-jdk \
-            autoconf libtool pkg-config cmake \
-            unzip zip
-
-      - name: Instalar Buildozer y Cython
-        run: |
-          pip install --upgrade pip
-          pip install buildozer==1.5.0 cython==3.0.0
-
-      - name: Configurar Java 17 como predeterminado
-        run: |
-          sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
-          echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
-          echo "/usr/lib/jvm/java-17-openjdk-amd64/bin" >> $GITHUB_PATH
-
-      - name: Preparar Android SDK (instalar sdkmanager en ruta correcta)
-        env:
-          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
-        run: |
-          ANDROID_SDK=$HOME/.buildozer/android/platform/android-sdk
-          mkdir -p $ANDROID_SDK/cmdline-tools
-
-          # Descargar Android command-line tools
-          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdtools.zip
-          unzip -q cmdtools.zip -d $ANDROID_SDK/cmdline-tools
-          mv $ANDROID_SDK/cmdline-tools/cmdline-tools $ANDROID_SDK/cmdline-tools/latest
-          rm cmdtools.zip
-
-          SDKMANAGER=$ANDROID_SDK/cmdline-tools/latest/bin/sdkmanager
-
-          # Aceptar todas las licencias
-          yes | $JAVA_HOME/bin/java -jar $SDKMANAGER --sdk_root=$ANDROID_SDK --licenses > /dev/null 2>&1 || \
-          yes | $SDKMANAGER --sdk_root=$ANDROID_SDK --licenses > /dev/null 2>&1 || true
-
-          # Instalar plataformas y build-tools necesarias
-          $SDKMANAGER --sdk_root=$ANDROID_SDK \
-            "platform-tools" \
-            "platforms;android-33" \
-            "build-tools;33.0.0"
-
-          # Crear enlace simbólico en ruta legacy que usa buildozer
-          mkdir -p $ANDROID_SDK/tools/bin
-          ln -sf $SDKMANAGER $ANDROID_SDK/tools/bin/sdkmanager
-
-          echo "ANDROID_HOME=$ANDROID_SDK" >> $GITHUB_ENV
-
-      - name: Cachear Buildozer (acelera builds futuros)
-        uses: actions/cache@v4
-        with:
-          path: ~/.buildozer
-          key: buildozer-${{ runner.os }}-${{ hashFiles('buildozer.spec') }}
-          restore-keys: |
-            buildozer-${{ runner.os }}-
-
-      - name: Compilar APK (modo debug)
-        run: |
-          buildozer android debug 2>&1 | tee build.log; BUILD_EXIT=${PIPESTATUS[0]}
+          docker run --rm \
+            -v ${{ github.workspace }}:/home/user/hostcwd \
+            kivy/buildozer:latest \
+            android debug 2>&1 | tee build.log
+          BUILD_EXIT=${PIPESTATUS[0]}
           if [ $BUILD_EXIT -ne 0 ]; then
-            echo "====== ÚLTIMAS 200 LÍNEAS (error real) ======"
-            tail -200 build.log
+            echo "====== ÚLTIMAS 100 LÍNEAS ======"
+            tail -100 build.log
             exit 1
           fi
 
-      - name: Subir APK como artefacto del workflow
+      - name: Subir APK como artefacto
         uses: actions/upload-artifact@v4
         with:
           name: GB-SMART-APK
@@ -111,9 +48,9 @@ jobs:
             ### Instalación en Android
             1. Descarga el archivo `.apk`
             2. En tu Android: **Ajustes → Seguridad → Fuentes desconocidas** → activar
-            3. Abre el APK descargado e instala
+            3. Abre el APK e instala
 
-            > Requiere Android 8.0 (API 26) o superior · 80 MB de espacio libre
+            > Requiere Android 8.0 (API 26) o superior
 
             ---
             Proyecto universitario ITTLA 2026 · Python / KivyMD
