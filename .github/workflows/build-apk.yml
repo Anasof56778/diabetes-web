@@ -89,15 +89,14 @@ jobs:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
           ANDROID_HOME: /home/runner/.buildozer/android/platform/android-sdk
         run: |
+          set +o pipefail
           yes | buildozer android debug 2>&1 | tee build.log
-          BUILD_EXIT=${PIPESTATUS[0]}
+          BUILD_EXIT=${PIPESTATUS[1]}
+          set -o pipefail
           if [ $BUILD_EXIT -ne 0 ]; then
             echo ""
-            echo "====== ERRORES ENCONTRADOS ======"
-            grep -n "Error\|ERROR\|FAILED\|Exception\|error:" build.log | grep -v "^\[DEBUG\]" | tail -40
-            echo ""
-            echo "====== ÚLTIMAS 60 LÍNEAS ======"
-            tail -60 build.log
+            echo "====== ÚLTIMAS 80 LÍNEAS ======"
+            tail -80 build.log
             exit 1
           fi
 
