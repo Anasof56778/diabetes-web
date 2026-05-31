@@ -67,12 +67,20 @@ jobs:
           echo "ANDROID_HOME=$SDK" >> $GITHUB_ENV
           echo "Android SDK listo en $SDK"
 
+      - name: Agregar swap (RAM extra para compilar Kivy)
+        run: |
+          sudo fallocate -l 4G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          free -h
+
       - name: Cachear Buildozer
         uses: actions/cache@v4
         with:
           path: ~/.buildozer
-          key: buildozer-${{ runner.os }}-${{ hashFiles('buildozer.spec') }}
-          restore-keys: buildozer-${{ runner.os }}-
+          key: buildozer-${{ runner.os }}-v3-${{ hashFiles('buildozer.spec') }}
+          restore-keys: buildozer-${{ runner.os }}-v3-
 
       - name: Compilar APK
         env:
