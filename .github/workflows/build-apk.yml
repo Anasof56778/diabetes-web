@@ -38,7 +38,15 @@ jobs:
           pip install --upgrade pip
           pip install buildozer==1.5.0 cython==3.0.0
 
+      - name: Configurar Java 17 como predeterminado
+        run: |
+          sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+          echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
+          echo "/usr/lib/jvm/java-17-openjdk-amd64/bin" >> $GITHUB_PATH
+
       - name: Preparar Android SDK (instalar sdkmanager en ruta correcta)
+        env:
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
         run: |
           ANDROID_SDK=$HOME/.buildozer/android/platform/android-sdk
           mkdir -p $ANDROID_SDK/cmdline-tools
@@ -52,6 +60,7 @@ jobs:
           SDKMANAGER=$ANDROID_SDK/cmdline-tools/latest/bin/sdkmanager
 
           # Aceptar todas las licencias
+          yes | $JAVA_HOME/bin/java -jar $SDKMANAGER --sdk_root=$ANDROID_SDK --licenses > /dev/null 2>&1 || \
           yes | $SDKMANAGER --sdk_root=$ANDROID_SDK --licenses > /dev/null 2>&1 || true
 
           # Instalar plataformas y build-tools necesarias
