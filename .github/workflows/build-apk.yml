@@ -87,7 +87,6 @@ jobs:
       - name: Compilar APK
         env:
           ANDROID_HOME: /home/runner/.buildozer/android/platform/android-sdk
-          ANDROID_HOME: /home/runner/.buildozer/android/platform/android-sdk
         run: |
           set +o pipefail
           yes | buildozer android debug 2>&1 | tee build.log
