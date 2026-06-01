@@ -30,10 +30,10 @@ html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--dark);
     background: var(--white);
-    line-height: 1.7;
+    line-height: 1.75;
     overflow-x: hidden;
 }
 
@@ -124,9 +124,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     margin-bottom: 18px;
 }
 .sec-desc {
-    font-size: 1.05rem;
-    color: var(--gray);
-    font-weight: 300;
+    font-size: 1.1rem;
+    color: #4b5563;
+    font-weight: 400;
 }
 .sec-desc-light { color: rgba(255,255,255,.78); }
 
@@ -159,12 +159,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     align-items: center;
     gap: 10px;
 }
+.nav-logo img {
+    filter: drop-shadow(0 1px 4px rgba(39,81,163,.25));
+}
 .logo-svg { flex-shrink: 0; }
 .nav-logo-text {
     font-family: 'Arial Black', sans-serif;
-    font-size: 1.18rem;
+    font-size: 1.22rem;
+    font-weight: 900;
     color: var(--dark);
-    letter-spacing: -.01em;
+    letter-spacing: .02em;
+    line-height: 1;
 }
 .nav-logo-accent { color: var(--blue); }
 
@@ -562,7 +567,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     color: var(--dark);
     margin-bottom: 10px;
 }
-.prob-card p { font-size: .93rem; color: var(--gray); }
+.prob-card p { font-size: 1rem; color: #374151; font-weight: 400; line-height: 1.7; }
 
 /* Gráfica */
 .chart-wrap {
@@ -583,7 +588,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     font-size: 1.25rem;
     margin-bottom: 14px;
 }
-.chart-text p { color: var(--gray); font-size: .94rem; margin-bottom: 20px; }
+.chart-text p { color: #374151; font-size: 1rem; margin-bottom: 20px; }
 .chart-legend { display: flex; flex-direction: column; gap: 10px; }
 .chart-legend li {
     display: flex;
@@ -770,7 +775,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     color: var(--dark);
     margin-bottom: 14px;
 }
-.feat-info p { color: var(--gray); margin-bottom: 20px; font-size: .96rem; }
+.feat-info p { color: #374151; margin-bottom: 20px; font-size: 1.05rem; }
 .feat-checklist { display: flex; flex-direction: column; gap: 10px; }
 .feat-checklist li {
     display: flex;
@@ -816,7 +821,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     font-size: 1rem;
     margin-bottom: 10px;
 }
-.frow-card p { font-size: .88rem; color: var(--gray); }
+.frow-card p { font-size: .97rem; color: #374151; }
 
 /* ---------- RECETAS ---------- */
 .recetas-grid {
@@ -874,7 +879,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     margin-bottom: 10px;
     color: var(--dark);
 }
-.rec-body p { font-size: .88rem; color: var(--gray); margin-bottom: 16px; }
+.rec-body p { font-size: .97rem; color: #374151; margin-bottom: 16px; }
 .btn-rec {
     display: inline-flex;
     align-items: center;
@@ -1713,7 +1718,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     /* Secciones */
     .section       { padding: 48px 0; }
     .sec-title     { font-size: 1.45rem; }
-    .sec-desc      { font-size: .95rem; }
+    .sec-desc      { font-size: 1rem; }
 
     /* Tarjetas */
     .prob-card, .rec-card, .frow-card, .tech-card { border-radius: 12px; }
